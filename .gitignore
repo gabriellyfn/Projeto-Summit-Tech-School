@@ -1,112 +1,33 @@
-# ==========================================
-# JAVA & BUILD TOOLS (Maven/Gradle)
-# ==========================================
-*.class
-*.log
-*.ctxt
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# Maven
+HELP.md
 target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# Gradle
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
-/out/
-
-# ==========================================
-# IDE - IntelliJ IDEA
-# ==========================================
-.idea/
-*.iml
-*.iws
-*.ipr
-out/
-# Se quiser manter o estilo de código do time, comente a linha abaixo:
-# !.idea/codeStyles 
-
-# ==========================================
-# IDE - VS Code
-# ==========================================
-.vscode/
-*.code-workspace
-.history/
-
-# ==========================================
-# IDE - Eclipse
-# ==========================================
-.metadata
-bin/
-tmp/
-.tmp
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.recommenders
-
-# Eclipse Java Project files
-.project
-.classpath
-
-# ==========================================
-# OPERATING SYSTEMS
-# ==========================================
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Windows
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs.db:index.db
-desktop.ini
-$RECYCLE.BIN/
-*.lnk
-
-# ==========================================
-# SPRING BOOT & ENV
-# ==========================================
+### STS ###
 .apt_generated
+.classpath
 .factorypath
+.project
+.settings
 .springBeans
 .sts4-cache
 
-# Logs e arquivos temporários
-/logs/*
-!/logs/.gitkeep
-/tmp/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
-# Configurações sensíveis (IMPORTANTE)
-.env
-.env.local
-application-local.properties
-application-dev.properties
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
