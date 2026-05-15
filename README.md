@@ -1,4 +1,66 @@
-# Projeto-Summit-Tech-School
+## Summit Tech School
 
+# 🎓 Sistema de Gestão de Ocorrências Escolares
 
-Este projeto consiste no desenvolvimento de um sistema web para gestão de ocorrências escolares, visando organizar e agilizar o acompanhamento pedagógico. O sistema deve suportar diferentes perfis de acesso (Professor, Administrativo, Analista e Coordenador), cada um com permissões específicas para garantir a segurança dos dados. As principais funcionalidades incluem o gerenciamento de turmas semestrais, cadastro e vinculação de alunos, além do registro detalhado de ocorrências categorizadas. O back-end deve implementar regras de negócio complexas, como filtros dinâmicos de alunos por turma e restrições de edição para professores. Para a coordenação, o sistema fornecerá dashboards com indicadores gráficos e rankings de reincidência para apoiar tomadas de decisão. A estrutura de dados será baseada em um modelo relacional que conecta usuários, alunos, turmas e tipos de ocorrências.
+Projeto Integrador desenvolvido com o objetivo de criar uma plataforma web para registro e acompanhamento de ocorrências escolares em instituições de ensino.
+
+O sistema busca promover maior organização, transparência e agilidade na gestão acadêmica, auxiliando coordenadores, professores e equipe administrativa na tomada de decisões pedagógicas.
+
+---
+
+## 🚀 Funcionalidades
+
+### 🔐 Autenticação e Controle de Acesso
+- Login com autenticação por perfil
+- Controle de permissões por usuário:
+  - Professor
+  - Analista de Qualidade
+  - Coordenador
+  - Professor Administrativo
+
+### 👨‍🎓 Gerenciamento de Alunos e Turmas
+- Cadastro de alunos
+- Cadastro de turmas
+- Vinculação de alunos às turmas
+- Organização por semestre, turno e ano letivo
+
+### 📋 Registro de Ocorrências
+- Registro de ocorrências escolares
+- Categorias e tipos de ocorrência
+- Descrição detalhada do ocorrido
+- Associação da ocorrência ao aluno e turma
+
+### 📊 Consultas e Dashboard
+- Histórico completo por aluno
+- Filtros por período, categoria e turma
+- Dashboard gerencial para coordenação
+- Indicadores gráficos e relatórios
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- Java 21+
+- Spring Boot
+- Spring Security
+- MySQL
+- Maven
+- Git
+- GitHub
+
+---
+
+## 🏗️ Arquitetura do Projeto
+
+O sistema será desenvolvido utilizando a arquitetura **MVC (Model-View-Controller)**, promovendo melhor organização, manutenção e escalabilidade da aplicação.
+
+---
+
+## 👨‍💻 Equipe de Desenvolvimento
+
+Este projeto está sendo desenvolvido por:
+
+- Gabrielly Nascimento
+- Lyncoln Santiago
+- Michael Paulo
+- Weslley Rocha
