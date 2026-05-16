@@ -1,12 +1,6 @@
 package br.com.summit.school.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,5 +19,6 @@ public class Perfil {
     private Long id_perfil;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "nome_perfil")
     private Nome_Perfil nome_Perfil;
 }
