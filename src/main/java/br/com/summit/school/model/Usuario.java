@@ -7,8 +7,7 @@ import java.time.LocalDate;
 
 @Entity(name = "Usuario")
 @Table(name = "Usuario")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_usuario")
@@ -30,7 +29,7 @@ public class Usuario {
     @Column(nullable = false, length = 155)
     private String senha;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_perfil", nullable = false)
     private String perfil;
 

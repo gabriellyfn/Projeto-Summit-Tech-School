@@ -1,13 +1,14 @@
 CREATE TABLE ocorrencia
 (
-    id_ocorrencia      BIGINT       NOT NULL AUTO_INCREMENT,
-    id_turma           BIGINT       NOT NULL,
-    id_aluno           BIGINT       NOT NULL,
-    id_usuario         BIGINT       NOT NULL,
-    id_tipo_ocorrencia BIGINT       NOT NULL,
-    data               DATE         NOT NULL,
-    hora               TIME         NOT NULL,
-    descricao          VARCHAR(255) NOT NULL,
+    id_ocorrencia        BIGINT       NOT NULL AUTO_INCREMENT,
+    id_turma             BIGINT       NOT NULL,
+    id_aluno             BIGINT       NOT NULL,
+    id_usuario           BIGINT       NOT NULL,
+    id_tipo_ocorrencia   BIGINT       NOT NULL,
+    data                 DATE         NOT NULL,
+    hora                 TIME         NOT NULL,
+    categoria_ocorrencia VARCHAR(30)  NOT NULL,
+    descricao            VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (id_ocorrencia),
     CONSTRAINT fk_id_turma FOREIGN KEY (id_turma) REFERENCES turmas (id_turma),

@@ -3,7 +3,7 @@ package br.com.summit.school.model;
 import jakarta.persistence.*;
 
 @Entity(name = "Aluno_Turma")
-@Table(name = "aluno_turma")
+@Table(name = "Aluno_Turma")
 
 public class AlunoTurma {
 
