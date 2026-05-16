@@ -26,7 +26,7 @@ public class Tipo_Ocorrencia {
     private Long id_tipo_ocorrencia;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "nome_ocorrencia")
+    @Column(name = "nome_ocorrencia", length = 50, nullable = false)
     private Nome_Ocorrencia nome_Ocorrencia;
 
 }
