@@ -40,7 +40,8 @@ O sistema busca promover maior organização, transparência e agilidade na gest
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Java 21+
+- Java 25
+- Lombok
 - Spring Boot
 - Spring Security
 - MySQL
