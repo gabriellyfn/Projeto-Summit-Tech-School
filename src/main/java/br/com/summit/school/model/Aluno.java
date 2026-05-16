@@ -16,21 +16,20 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_aluno")
-    private Integer id;
+    private Long id;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String nome;
 
-    @Column(length = 255)
+    @Column(columnDefinition = "TEXT")
     private String foto;
 
-    @Column(name = "data_nasc")
-    private LocalDate dataNasc;
+    @Column(name = "data_de_nascimento", nullable = false)
+    private LocalDate dataDeNascimento;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String email;
 
-    @Column(length = 25)
+    @Column(nullable = false, length = 25)
     private String telefone;
-
 }
