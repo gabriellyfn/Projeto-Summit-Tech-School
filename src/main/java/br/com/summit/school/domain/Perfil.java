@@ -1,4 +1,4 @@
-package br.com.summit.school.model;
+package br.com.summit.school.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
