@@ -1,5 +1,4 @@
 CREATE TABLE aluno
-
 (
     id_aluno           BIGINT       NOT NULL AUTO_INCREMENT,
     foto               TEXT,

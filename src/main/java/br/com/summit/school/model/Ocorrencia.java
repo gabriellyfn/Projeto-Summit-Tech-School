@@ -43,7 +43,7 @@ public class Ocorrencia {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
-    private Uruario usuario;
+    private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_ocorrencia")
@@ -57,7 +57,7 @@ public class Ocorrencia {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria_ocorrencia", length = 30)
-    private Categoria_ocorrencia categoria_ocorrencia;
+    private Categoria_Ocorrencia categoria_ocorrencia;
 
     @Column(name = "descricao", length = 255)
     private String descricao;

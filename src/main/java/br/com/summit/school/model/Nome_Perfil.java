@@ -1,4 +1,4 @@
-package br.com.summit.school.domain;
+package br.com.summit.school.model;
 
 public enum Nome_Perfil {
 

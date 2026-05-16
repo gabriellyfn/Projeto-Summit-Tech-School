@@ -1,6 +1,6 @@
 package br.com.summit.school.model;
 
-public enum Categoria_ocorrencia {
+public enum Categoria_Ocorrencia {
 
     DISCIPLINA,
     FALTA,
