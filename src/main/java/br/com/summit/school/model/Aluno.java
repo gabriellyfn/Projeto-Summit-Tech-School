@@ -1,14 +1,19 @@
 package br.com.summit.school.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "ALUNO")
+@Entity(name = "Aluno")
+@Table(name = "Aluno")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +33,7 @@ public class Aluno {
     @Column(name = "data_de_nascimento", nullable = false)
     private LocalDate dataDeNascimento;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, unique = true, length = 255)
     private String email;
 
     @Column(nullable = false, length = 25)
