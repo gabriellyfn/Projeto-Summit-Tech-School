@@ -24,7 +24,7 @@ import java.util.TimeZone;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode (of = "id_ocorrencia")
+@EqualsAndHashCode(of = "id_ocorrencia")
 public class Ocorrencia {
 
     @Id
