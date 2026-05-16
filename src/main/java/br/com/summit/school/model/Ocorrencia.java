@@ -1,5 +1,6 @@
 package br.com.summit.school.model;
 
+import br.com.summit.school.domain.Tipo_Ocorrencia;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
