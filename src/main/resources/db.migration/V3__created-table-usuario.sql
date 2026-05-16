@@ -4,7 +4,7 @@ CREATE TABLE usuario
     nome VARCHAR(150) NOT NULL,
     foto TEXT,
     login VARCHAR(155) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,
+    senha VARCHAR(155) NOT NULL,
     telefone VARCHAR(25) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     data_de_nascimento DATE,
