@@ -1,6 +1,5 @@
 package br.com.summit.school.model;
 
-import br.com.summit.school.domain.Tipo_Ocorrencia;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -47,7 +46,7 @@ public class Ocorrencia {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_ocorrencia")
-    private Tipo_Ocorrencia tipo_ocorrencia;
+    private br.com.summit.school.domain.Tipo_Ocorrencia tipo_ocorrencia;
 
     @Column(name = "data")
     private Date data;
@@ -57,7 +56,7 @@ public class Ocorrencia {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria_ocorrencia", length = 30)
-    private Categoria_Ocorrencia categoria_ocorrencia;
+    private Tipo_Ocorrencia categoria_ocorrencia;
 
     @Column(name = "descricao", length = 255)
     private String descricao;

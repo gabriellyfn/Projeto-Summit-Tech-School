@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/alunos")
+@RequestMapping("/alunos")
 public class AlunoController {
 
     @Autowired
@@ -21,9 +21,7 @@ public class AlunoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Aluno>> findAllAlunos(){
+    public ResponseEntity<List<Aluno>> findAll(){
         return ResponseEntity.ok(alunoRepository.findAll());
     }
-
-
 }
