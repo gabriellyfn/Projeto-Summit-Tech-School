@@ -1,5 +1,6 @@
-package br.com.summit.school.model;
+package br.com.summit.school.domain.turma;
 
+import br.com.summit.school.domain.aluno.Aluno;
 import jakarta.persistence.*;
 
 @Entity(name = "Aluno_Turma")

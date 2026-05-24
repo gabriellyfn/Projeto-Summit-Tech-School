@@ -1,6 +1,5 @@
-package br.com.summit.school.repository;
+package br.com.summit.school.domain.aluno;
 
-import br.com.summit.school.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

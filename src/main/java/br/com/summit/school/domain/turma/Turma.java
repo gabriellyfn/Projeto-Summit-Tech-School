@@ -1,4 +1,4 @@
-package br.com.summit.school.model;
+package br.com.summit.school.domain.turma;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

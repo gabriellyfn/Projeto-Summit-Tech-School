@@ -1,7 +1,7 @@
 package br.com.summit.school.controller;
 
-import br.com.summit.school.model.Aluno;
-import br.com.summit.school.repository.AlunoRepository;
+import br.com.summit.school.domain.aluno.Aluno;
+import br.com.summit.school.domain.aluno.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

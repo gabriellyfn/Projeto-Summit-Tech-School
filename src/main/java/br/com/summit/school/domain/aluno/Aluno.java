@@ -1,4 +1,4 @@
-package br.com.summit.school.model;
+package br.com.summit.school.domain.aluno;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
