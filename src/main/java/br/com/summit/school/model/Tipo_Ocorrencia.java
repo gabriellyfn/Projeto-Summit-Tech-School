@@ -9,3 +9,4 @@ public enum Tipo_Ocorrencia {
     RENDIMENTO,
     OUTROS,
 }
+//Trocar ideia sobre essa Enum

@@ -1,5 +1,8 @@
-package br.com.summit.school.model;
+package br.com.summit.school.domain.ocorrencia;
 
+import br.com.summit.school.domain.aluno.Aluno;
+import br.com.summit.school.domain.usuario.Usuario;
+import br.com.summit.school.domain.turma.Turma;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,6 +19,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -46,17 +51,17 @@ public class Ocorrencia {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_ocorrencia")
-    private br.com.summit.school.domain.Tipo_Ocorrencia tipo_ocorrencia;
+    private br.com.summit.school.domain.ocorrencia.Tipo_Ocorrencia tipo_ocorrencia;
 
     @Column(name = "data")
-    private Date data;
+    private LocalDate data;
 
     @Column(name = "hora")
-    private TimeZone hora;
+    private LocalTime hora;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria_ocorrencia", length = 30)
-    private Tipo_Ocorrencia categoria_ocorrencia;
+    private br.com.summit.school.model.Tipo_Ocorrencia categoria_ocorrencia;
 
     @Column(name = "descricao", length = 255)
     private String descricao;

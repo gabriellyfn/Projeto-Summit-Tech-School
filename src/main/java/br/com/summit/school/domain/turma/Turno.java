@@ -1,4 +1,4 @@
-package br.com.summit.school.model;
+package br.com.summit.school.domain.turma;
 
 public enum Turno {
     MANHA,

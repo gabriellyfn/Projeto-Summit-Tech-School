@@ -1,4 +1,4 @@
-package br.com.summit.school.domain;
+package br.com.summit.school.domain.ocorrencia;
 
 public enum Nome_Ocorrencia {
 
