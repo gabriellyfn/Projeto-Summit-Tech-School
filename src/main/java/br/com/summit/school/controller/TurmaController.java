@@ -1,4 +1,4 @@
 package br.com.summit.school.controller;
 
-public class TurmaControlle {
+public class TurmaController {
 }

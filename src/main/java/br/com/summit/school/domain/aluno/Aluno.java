@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class Aluno {
     @Column(columnDefinition = "TEXT")
     private String foto;
 
-    @NotBlank(message = "A data de nascimento é obrigatória")
+    @NotNull(message = "A data de nascimento é obrigatória")
     @Column(name = "data_de_nascimento", nullable = false)
     private LocalDate dataDeNascimento;
 
