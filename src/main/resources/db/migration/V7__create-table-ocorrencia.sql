@@ -9,6 +9,7 @@ CREATE TABLE ocorrencia
     hora                 TIME         NOT NULL,
     categoria_ocorrencia VARCHAR(30)  NOT NULL,
     descricao            VARCHAR(255) NOT NULL,
+    ativo                TINYINT(1)   DEFAULT 1,
 
     PRIMARY KEY (id_ocorrencia),
     CONSTRAINT fk_id_turma FOREIGN KEY (id_turma) REFERENCES turma (id_turma),

@@ -2,11 +2,17 @@ package br.com.summit.school.model;
 
 public enum Tipo_Ocorrencia {
 
-    DISCIPLINA,
-    FALTA,
+    ADMINISTRATIVO,
+    DISCIPLINAR,
+    PEDAGOGICA,
+    MEDICA,
+    ACADEMICA,
+    COMPORTAMENTAL,
+    FINANCEIRA,
+    OPERACIONAL,
+    PSICOLOGICA,
+    INCIDENTE,
+    INDISCIPLINAR,
     ATRASO,
-    COMPORTAMENTO,
-    RENDIMENTO,
-    OUTROS,
+    RENDIMENTO
 }
-//Trocar ideia sobre essa Enum
