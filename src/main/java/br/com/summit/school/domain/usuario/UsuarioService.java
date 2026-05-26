@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioService implements UserDetailsService { // Implementa UserDetailsService
+public class UsuarioService implements UserDetailsService {
 
     private final PasswordEncoder encoder;
     private final UsuarioRepository repository;
@@ -23,15 +23,21 @@ public class UsuarioService implements UserDetailsService { // Implementa UserDe
     @Transactional
     public DadosDetalhamentoUsuario cadastrar(DadosCadastroUsuario dados) {
 
-        //buscando o perfil pelo nome do enum
         Perfil perfil = perfilRepository.findByNome(dados.perfil().name())
                 .orElseThrow(()-> new RuntimeException("Este Perfil não foi encontrado:"+ dados.perfil()));
 
         String senhaCriptografada = encoder.encode(dados.senha());
+        
         Usuario usuario = new Usuario(
+                null,
+                dados.login(),
+                "",
                 dados.login(),
                 senhaCriptografada,
-                perfil
+                perfil,
+                "",
+                dados.email(),
+                null
         );
 
         repository.save(usuario);
