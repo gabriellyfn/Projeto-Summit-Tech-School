@@ -2,8 +2,6 @@ package br.com.summit.school.domain.usuario;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +23,6 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_perfil;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "nome_perfil")
-    private Nome_Perfil nome_Perfil;
+    @Column(name = "nome_perfil", nullable = false, unique = true )
+    private String nome;
 }
