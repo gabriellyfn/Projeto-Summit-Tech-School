@@ -12,38 +12,21 @@ public class UsuarioService implements UserDetailsService {
 
     private final PasswordEncoder encoder;
     private final UsuarioRepository repository;
-    private final PerfilRepository  perfilRepository;
 
-    public UsuarioService(PasswordEncoder encoder, UsuarioRepository repository, PerfilRepository perfilRepository) {
+    public UsuarioService(PasswordEncoder encoder, UsuarioRepository repository) {
         this.encoder = encoder;
         this.repository = repository;
-        this.perfilRepository = perfilRepository;
     }
 
     @Transactional
-    public DadosDetalhamentoUsuario cadastrar(DadosCadastroUsuario dados) {
+    public Long cadastrar(Usuario usuario) {
 
-        Perfil perfil = perfilRepository.findByNome(dados.perfil().name())
-                .orElseThrow(()-> new RuntimeException("Este Perfil não foi encontrado:"+ dados.perfil()));
+        usuario.setSenha(encoder.encode(usuario.getSenha()));
 
-        String senhaCriptografada = encoder.encode(dados.senha());
-        
-        Usuario usuario = new Usuario(
-                null,
-                dados.login(),
-                "",
-                dados.login(),
-                senhaCriptografada,
-                perfil,
-                "",
-                dados.email(),
-                null
-        );
-
-        repository.save(usuario);
-        return new DadosDetalhamentoUsuario(usuario);
+        Usuario usuarioSalvo = repository.save(usuario);
+        return usuarioSalvo.getId_usuario();
     }
-
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByLogin(username)

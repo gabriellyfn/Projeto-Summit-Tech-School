@@ -17,7 +17,7 @@ public record DadosListagemUsuario(
                 usuario.getEmail(),
                 usuario.getTelefone(),
                 usuario.getFoto(),
-                usuario.getPerfil().getNome().toString()
+                usuario.getPerfil() != null ? usuario.getPerfil().getNome() : null
         );
     }
 }
