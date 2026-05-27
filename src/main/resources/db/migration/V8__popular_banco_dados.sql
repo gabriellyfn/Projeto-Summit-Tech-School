@@ -70,7 +70,8 @@ INSERT INTO usuario (nome, login, senha, id_perfil, email, data_de_nascimento, t
 ('Prof.ª/Adm. Sofia Reis', 'sofia.admin', 'senha123', 4, 'sofia.reis@example.com', '1988-07-07', '11922220007'),
 ('Prof. Ricardo Eletro', 'ricardo.prof', 'senha123', 1, 'ricardo.eletro@example.com', '1981-08-08', '11922220008'),
 ('Prof.ª Mônica Geller', 'monica.prof', 'senha123', 1, 'monica.geller@example.com', '1983-09-09', '11922220009'),
-('Diretor Silvio Santos', 'silvio.dir', 'senha456', 2, 'silvio.santos@example.com', '1960-10-10', '11922220010');
+('Diretor Silvio Santos', 'silvio.dir', 'senha456', 2, 'silvio.santos@example.com', '1960-10-10', '11922220010'),
+('Prof. Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 5, 'abate.abel@cbf.com', '1990-05-01', '11922220015');
 
 
 -- ------------------------------------------------------------------------------
