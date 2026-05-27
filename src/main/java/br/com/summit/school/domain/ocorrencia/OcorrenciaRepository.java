@@ -1,4 +1,8 @@
 package br.com.summit.school.domain.ocorrencia;
 
-public class OcorrenciaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface OcorrenciaRepository extends JpaRepository<Ocorrencia, Long> {
 }
