@@ -14,10 +14,11 @@ public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_turma;
+    @Column(name = "id_turma")
+    private Long idTurma;
 
-    @Column(nullable = false, length = 50)
-    private String nome_da_turma;
+    @Column(name = "nome_da_turma", nullable = false, length = 50)
+    private String nomeDaTurma;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "turno")
@@ -30,5 +31,9 @@ public class Turma {
     @Column(name = "semestre")
     private Semestre semestre;
 
-
+    public Turma(DadosCadastroTurma dados) {
+        this.nomeDaTurma = dados.nome();
+        this.turno = dados.turno();
+        this.semestre = dados.semestre();
+    }
 }

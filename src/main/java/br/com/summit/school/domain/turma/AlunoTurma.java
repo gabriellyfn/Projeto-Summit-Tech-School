@@ -2,10 +2,11 @@ package br.com.summit.school.domain.turma;
 
 import br.com.summit.school.domain.aluno.Aluno;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity(name = "Aluno_Turma")
 @Table(name = "Aluno_Turma")
-
+@Data
 public class AlunoTurma {
 
     @Id
