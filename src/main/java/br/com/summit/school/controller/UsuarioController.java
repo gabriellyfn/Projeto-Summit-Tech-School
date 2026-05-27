@@ -1,11 +1,13 @@
 package br.com.summit.school.controller;
 
-import br.com.summit.school.domain.usuario.*;
+import br.com.summit.school.domain.usuario.DadosListagemUsuario;
+import br.com.summit.school.domain.usuario.Usuario;
+import br.com.summit.school.domain.usuario.UsuarioRepository;
+import br.com.summit.school.domain.usuario.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,40 +16,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/usuarios")
 public class UsuarioController {
-    private final UsuarioService service;
-    private final PasswordEncoder passwordEncoder;
 
-    public  UsuarioController(
-            UsuarioService service,
-            PasswordEncoder passwordEncoder
-    ){
+    private final UsuarioService service;
+
+    public UsuarioController(UsuarioService service) {
         this.service = service;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public ResponseEntity<DadosListagemUsuario> cadastrarUsuario(@RequestBody @Valid Usuario usuario){
+    public ResponseEntity<Void> cadastrarUsuario(@RequestBody @Valid Usuario usuario, UriComponentsBuilder uriBuilder) {
 
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        Long idUsuarioSalvo = service.cadastrar(usuario);
 
-        Usuario usuarioSalvo = usuarioRepository.save(usuario);
+        URI uri = uriBuilder.path("/usuarios/{id}")
+                .buildAndExpand(idUsuarioSalvo)
+                .toUri();
 
-        return ResponseEntity.ok(new DadosListagemUsuario(usuarioSalvo));
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<DadosListagemUsuario>> findall(){
-
+    public ResponseEntity<List<DadosListagemUsuario>> findall() {
         List<DadosListagemUsuario> usuarios = usuarioRepository
                 .findAll()
                 .stream()
