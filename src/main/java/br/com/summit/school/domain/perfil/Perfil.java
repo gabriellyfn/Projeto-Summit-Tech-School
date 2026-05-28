@@ -1,4 +1,4 @@
-package br.com.summit.school.domain.usuario;
+package br.com.summit.school.domain.perfil;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
