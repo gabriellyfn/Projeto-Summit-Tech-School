@@ -3,20 +3,22 @@ package br.com.summit.school.domain.turma;
 import br.com.summit.school.domain.aluno.AlunoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TurmaService {
 
-    @Autowired
     private TurmaRepository turmaRepository;
 
-    @Autowired
-    private AlunoRepository alunoRepository;
+    private final AlunoRepository alunoRepository;
 
-    @Autowired
-    private AlunoTurmaRepository alunoTurmaRepository;
+    private final AlunoTurmaRepository alunoTurmaRepository;
+
+    public TurmaService(TurmaRepository turmaRepository, AlunoRepository alunoRepository, AlunoTurmaRepository alunoTurmaRepository) {
+        this.turmaRepository = turmaRepository;
+        this.alunoRepository = alunoRepository;
+        this.alunoTurmaRepository = alunoTurmaRepository;
+    }
 
     @Transactional
     public void vincularAlunos(Long turmaId, DadosVinculoAlunoTurma dados) {
