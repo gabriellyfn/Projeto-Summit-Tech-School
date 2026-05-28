@@ -20,7 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
 @RequestMapping("/turmas")
 public class TurmaController {
 
@@ -32,6 +31,7 @@ public class TurmaController {
 
     @PostMapping
     @Transactional
+    @PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
     public ResponseEntity<DadosListagemTurma> cadastrar(@RequestBody @Valid DadosCadastroTurma dados, UriComponentsBuilder uriBuilder) {
         var turma = new Turma(dados);
         repository.save(turma);
@@ -47,6 +47,7 @@ public class TurmaController {
     }
 
     @PostMapping("/{id}/vincular-alunos")
+    @PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
     public ResponseEntity<String> vincularAlunos(@PathVariable Long id, @RequestBody @Valid DadosVinculoAlunoTurma dados) {
         turmaService.vincularAlunos(id, dados);
         return ResponseEntity.ok("Alunos vinculados com sucesso à turma " + id);
