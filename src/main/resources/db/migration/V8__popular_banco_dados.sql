@@ -60,7 +60,7 @@ INSERT INTO aluno (nome, data_de_nascimento, email, telefone) VALUES
 -- 5. Populando a tabela de Usuários
 -- ------------------------------------------------------------------------------
 INSERT INTO usuario (nome, login, senha, id_perfil, email, data_de_nascimento, telefone) VALUES
-('Prof. Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 5, 'abate.abel@cbf.com', '1990-05-01', '11922220015');
+('Prof. Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 5, 'abate.abel@cbf.com', '1990-05-01', '11922220015'),
 ('admin', 'admin', '$2a$10$6bIiMq6akzxvGj5OE0hhCeTQvsswigp8H57v5nsoEoDeCZ/CuG30y', 1, 'admin@admin.com', '1980-01-01', '11922220012' ),
 ('Prof.ª Beatriz Souza', 'beatriz.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'beatriz.souza@example.com', '1985-02-02', '11922220002'),
 ('Prof. Marcos Lima', 'marcos.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'marcos.lima@example.com', '1990-03-03', '11922220003'),
