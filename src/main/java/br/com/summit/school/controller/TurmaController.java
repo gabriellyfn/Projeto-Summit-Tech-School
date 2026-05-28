@@ -1,6 +1,11 @@
 package br.com.summit.school.controller;
 
-import br.com.summit.school.domain.turma.*;
+import br.com.summit.school.domain.turma.DadosCadastroTurma;
+import br.com.summit.school.domain.turma.DadosListagemTurma;
+import br.com.summit.school.domain.turma.DadosVinculoAlunoTurma;
+import br.com.summit.school.domain.turma.Turma;
+import br.com.summit.school.domain.turma.TurmaRepository;
+import br.com.summit.school.domain.turma.TurmaService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
+@PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
 @RequestMapping("/turmas")
 public class TurmaController {
 
@@ -26,7 +32,6 @@ public class TurmaController {
 
     @PostMapping
     @Transactional
-    @PreAuthorize("hasRole('PROFESSOR_ADMINISTRATIVO')")
     public ResponseEntity<DadosListagemTurma> cadastrar(@RequestBody @Valid DadosCadastroTurma dados, UriComponentsBuilder uriBuilder) {
         var turma = new Turma(dados);
         repository.save(turma);
@@ -42,7 +47,6 @@ public class TurmaController {
     }
 
     @PostMapping("/{id}/vincular-alunos")
-    @PreAuthorize("hasRole('PROFESSOR_ADMINISTRATIVO')")
     public ResponseEntity<String> vincularAlunos(@PathVariable Long id, @RequestBody @Valid DadosVinculoAlunoTurma dados) {
         turmaService.vincularAlunos(id, dados);
         return ResponseEntity.ok("Alunos vinculados com sucesso à turma " + id);
