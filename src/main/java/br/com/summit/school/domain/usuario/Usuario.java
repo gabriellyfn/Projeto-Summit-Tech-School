@@ -1,5 +1,6 @@
 package br.com.summit.school.domain.usuario;
 
+import br.com.summit.school.domain.perfil.Perfil;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

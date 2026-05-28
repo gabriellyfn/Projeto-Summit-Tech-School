@@ -1,5 +1,7 @@
 package br.com.summit.school.domain.usuario;
 
+import br.com.summit.school.domain.perfil.Perfil;
+
 import java.time.LocalDate;
 
 public record DadosDetalhamentoUsuario(

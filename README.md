@@ -145,6 +145,36 @@ curl -X POST http://localhost:8080/alunos \
 }'
 ```
 
+Listar Turma
+```bash
+curl -X GET http://localhost:8080/turmas \
+-H "Authorization: Bearer SEU_TOKEN"
+```
+
+Cadastrar Turma
+
+```bash
+curl -X POST http://localhost:8080/turmas \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer SEU_TOKEN" \
+-d '{
+        "nome": "3D - Ensino Médio",
+        "turno": "MANHA",
+        "semestre": "PRIMEIRO_SEMESTRE"
+    }'
+```
+
+Cadastrar Vinculo de Turma - Aluno
+
+```bash
+curl -X POST http://localhost:8080/turmas/{id}/vincular-alunos \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer SEU_TOKEN" \
+-d '{
+      "alunosIds": [1, 2, 3]
+    }'
+```
+
 # 🔑 Como obter o Token JWT
 
 1. Faça login na aplicação utilizando a rota `/login`:
