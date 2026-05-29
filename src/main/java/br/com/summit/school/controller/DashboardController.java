@@ -16,16 +16,19 @@ import java.time.LocalDate;
 @RequestMapping("/dashboard")
 public class DashboardController {
 
-    @Autowired
-    private OcorrenciaRepository ocorrenciaRepository;
+    private final OcorrenciaRepository repository;
+
+    public DashboardController(OcorrenciaRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("/estatisticas")
     @PreAuthorize("hasAnyRole('ADMIN', 'COORDENADOR')")
     public ResponseEntity<DadosDashboard> obterEstatisticas(
             @RequestParam LocalDate inicio,
             @RequestParam LocalDate fim) {
-        var ranking = ocorrenciaRepository .findRankingAlunosReincidentes();
-        var estatisticasCategoria = ocorrenciaRepository.findTotalPorCategoriaNoPeriodo(inicio, fim);
+        var ranking = repository .findRankingAlunosReincidentes();
+        var estatisticasCategoria = repository.findTotalPorCategoriaNoPeriodo(inicio, fim);
 
         var dadosDashboard = new DadosDashboard(ranking, estatisticasCategoria);
 
