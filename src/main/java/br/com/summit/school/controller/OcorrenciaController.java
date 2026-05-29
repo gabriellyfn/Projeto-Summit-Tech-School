@@ -10,7 +10,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -26,7 +31,7 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
     public ResponseEntity<DadosDetalhamentoOcorrencia> cadastrar(
             @RequestBody @Valid DadosCadastroOcorrencia dados,
             UriComponentsBuilder uriBuilder
@@ -45,7 +50,7 @@ public class OcorrenciaController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE')")
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
     public ResponseEntity<Page<DadosListagemOcorrencia>> listar(
             @PageableDefault(size = 10) Pageable paginacao
     ){
@@ -56,7 +61,7 @@ public class OcorrenciaController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE')")
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
     public ResponseEntity<DadosDetalhamentoOcorrencia> detalhar(
             @PathVariable Long id
     ){

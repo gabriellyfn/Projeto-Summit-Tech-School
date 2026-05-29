@@ -1,5 +1,6 @@
 package br.com.summit.school.domain.ocorrencia;
 
+import br.com.summit.school.model.Tipo_Ocorrencia;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,7 @@ public class OcorrenciaService {
         ocorrencia.setData(dados.data());
         ocorrencia.setHora(dados.hora());
         
-        ocorrencia.setCategoria_ocorrencia(br.com.summit.school.model.Tipo_Ocorrencia.valueOf(dados.categoriaOcorrencia().toString()));
+        ocorrencia.setCategoria_ocorrencia(Tipo_Ocorrencia.valueOf(dados.categoriaOcorrencia().name()));
         ocorrencia.setDescricao(dados.descricao());
 
         ocorrenciaRepository.save(ocorrencia);
