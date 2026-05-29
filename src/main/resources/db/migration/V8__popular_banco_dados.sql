@@ -60,7 +60,6 @@ INSERT INTO aluno (nome, data_de_nascimento, email, telefone) VALUES
 -- 5. Populando a tabela de Usuários
 -- ------------------------------------------------------------------------------
 INSERT INTO usuario (nome, login, senha, id_perfil, email, data_de_nascimento, telefone) VALUES
-('Prof. Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 5, 'abate.abel@cbf.com', '1990-05-01', '11922220015');
 ('admin', 'admin', '$2a$10$6bIiMq6akzxvGj5OE0hhCeTQvsswigp8H57v5nsoEoDeCZ/CuG30y', 1, 'admin@admin.com', '1980-01-01', '11922220012' ),
 ('Prof.ª Beatriz Souza', 'beatriz.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'beatriz.souza@example.com', '1985-02-02', '11922220002'),
 ('Prof. Marcos Lima', 'marcos.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'marcos.lima@example.com', '1990-03-03', '11922220003'),
@@ -70,7 +69,8 @@ INSERT INTO usuario (nome, login, senha, id_perfil, email, data_de_nascimento, t
 ('Prof.ª/Adm. Sofia Reis', 'sofia.admin', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 4, 'sofia.reis@example.com', '1988-07-07', '11922220007'),
 ('Prof. Ricardo Eletro', 'ricardo.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'ricardo.eletro@example.com', '1981-08-08', '11922220008'),
 ('Prof.ª Mônica Geller', 'monica.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'monica.geller@example.com', '1983-09-09', '11922220009'),
-('Diretor Silvio Santos', 'silvio.dir', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'silvio.santos@example.com', '1960-10-10', '11922220010');
+('Diretor Silvio Santos', 'silvio.dir', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'silvio.santos@example.com', '1960-10-10', '11922220010'),
+('Prof. Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 5, 'abate.abel@cbf.com', '1990-05-01', '11922220015');
 
 
 

@@ -60,6 +60,40 @@ O sistema será desenvolvido utilizando a arquitetura **MVC (Model-View-Controll
 
 ---
 
+# 🚀 Como Rodar o Projeto
+
+## Backend (API)
+
+1.  **Clone o repositório.**
+2.  **Configure o Banco de Dados:** Crie um banco de dados MySQL e atualize as credenciais no arquivo `src/main/resources/application.properties`.
+3.  **Execute a Aplicação:** Abra o projeto em sua IDE (IntelliJ ou Eclipse) e execute a classe principal `SchoolApplication.java`. O servidor iniciará na porta `8080`.
+
+## Frontend (Angular)
+
+**Pré-requisitos:**
+*   **Node.js** (versão LTS recomendada)
+*   **Angular CLI** (`npm install -g @angular/cli`)
+
+**Passos para Execução:**
+
+1.  Navegue até a pasta do front-end:
+    ```sh
+    cd summit-school-frontend
+    ```
+
+2.  **Instale as dependências** (na primeira vez ou após um `git pull`):
+    ```sh
+    npm install
+    ```
+
+3.  **Inicie o servidor de desenvolvimento:**
+    ```sh
+    ng serve --open
+    ```
+O navegador abrirá automaticamente em `http://localhost:4200`.
+
+---
+
 # Rotas da API
 
 ## 🔐 Login
@@ -143,6 +177,36 @@ curl -X POST http://localhost:8080/alunos \
   "email": "mari@email.com",
   "telefone": "11994449073",
 }'
+```
+
+Listar Turma
+```bash
+curl -X GET http://localhost:8080/turmas \
+-H "Authorization: Bearer SEU_TOKEN"
+```
+
+Cadastrar Turma
+
+```bash
+curl -X POST http://localhost:8080/turmas \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer SEU_TOKEN" \
+-d '{
+        "nome": "3D - Ensino Médio",
+        "turno": "MANHA",
+        "semestre": "PRIMEIRO_SEMESTRE"
+    }'
+```
+
+Cadastrar Vinculo de Turma - Aluno
+
+```bash
+curl -X POST http://localhost:8080/turmas/{id}/vincular-alunos \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer SEU_TOKEN" \
+-d '{
+      "alunosIds": [1, 2, 3]
+    }'
 ```
 
 # 🔑 Como obter o Token JWT
