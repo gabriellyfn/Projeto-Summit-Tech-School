@@ -60,6 +60,40 @@ O sistema será desenvolvido utilizando a arquitetura **MVC (Model-View-Controll
 
 ---
 
+# 🚀 Como Rodar o Projeto
+
+## Backend (API)
+
+1.  **Clone o repositório.**
+2.  **Configure o Banco de Dados:** Crie um banco de dados MySQL e atualize as credenciais no arquivo `src/main/resources/application.properties`.
+3.  **Execute a Aplicação:** Abra o projeto em sua IDE (IntelliJ ou Eclipse) e execute a classe principal `SchoolApplication.java`. O servidor iniciará na porta `8080`.
+
+## Frontend (Angular)
+
+**Pré-requisitos:**
+*   **Node.js** (versão LTS recomendada)
+*   **Angular CLI** (`npm install -g @angular/cli`)
+
+**Passos para Execução:**
+
+1.  Navegue até a pasta do front-end:
+    ```sh
+    cd summit-school-frontend
+    ```
+
+2.  **Instale as dependências** (na primeira vez ou após um `git pull`):
+    ```sh
+    npm install
+    ```
+
+3.  **Inicie o servidor de desenvolvimento:**
+    ```sh
+    ng serve --open
+    ```
+O navegador abrirá automaticamente em `http://localhost:4200`.
+
+---
+
 # Rotas da API
 
 ## 🔐 Login
