@@ -27,7 +27,7 @@ public record DadosCadastroOcorrencia(
         LocalTime hora,
 
         @NotNull(message = "A categoria da ocorrência é obrigatória")
-        Tipo_Ocorrencia categoriaOcorrencia,
+        Nome_Ocorrencia categoriaOcorrencia,
 
         @NotBlank(message = "A descrição é obrigatória")
         String descricao
