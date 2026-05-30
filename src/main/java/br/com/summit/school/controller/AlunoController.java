@@ -15,7 +15,6 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/alunos")
 public class AlunoController {
 
@@ -25,8 +24,8 @@ public class AlunoController {
         this.service = service;
     }
 
-
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'PROFESSOR_ADMINISTRATIVO')")
     public ResponseEntity<DadosListagemAluno> cadastrarAluno(
             @RequestBody @Valid DadosCadastroAluno dados,
             UriComponentsBuilder uriBuilder){
@@ -43,6 +42,7 @@ public class AlunoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'PROFESSOR_ADMINISTRATIVO')")
     public ResponseEntity<List<DadosListagemAluno>> findAll(){
 
         List<DadosListagemAluno> alunos = service.listarTodos();

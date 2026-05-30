@@ -228,7 +228,6 @@ curl -X POST http://localhost:8080/ocorrencias \
 -d '{
   "idTurma": 1,
   "idAluno": 1,
-  "idUsuario": 1,
   "idTipoOcorrencia": 1,
   "data": "2026-05-29",
   "hora": "08:30:00",
@@ -262,12 +261,39 @@ Exemplo de Payload:
 {
   "idTurma": 1,
   "idAluno": 1,
-  "idUsuario": 1,
   "idTipoOcorrencia": 1,
   "data": "2026-05-29",
   "hora": "08:30:00",
   "categoriaOcorrencia": "DISCIPLINAR",
   "descricao": "Aluno apresentou comportamento inadequado durante a aula."
+}
+```
+
+##📋Obter Estatisticas
+
+➜ Obter Estatisticas
+
+```bash
+curl -X GET http://localhost:8080/dashboard \
+-H "Authorization: Bearer SEU_TOKEN"
+```
+
+Exemplo de Payload:
+```bash
+{
+	"rankingReincidentes": [
+		{
+			"alunoId": 1,
+			"nomeAluno": "Ana Beatriz",
+			"totalOcorrencias": 2
+		},
+	],
+	"totalPorCategoria": [
+		{
+			"categoria": "DISCIPLINAR",
+			"total": 2
+		},
+	]
 }
 ```
 
