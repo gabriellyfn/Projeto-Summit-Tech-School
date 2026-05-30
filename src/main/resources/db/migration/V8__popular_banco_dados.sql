@@ -61,16 +61,16 @@ INSERT INTO aluno (nome, data_de_nascimento, email, telefone) VALUES
 -- ------------------------------------------------------------------------------
 INSERT INTO usuario (nome, login, senha, id_perfil, email, data_de_nascimento, telefone) VALUES
 ('admin', 'admin', '$2a$10$6bIiMq6akzxvGj5OE0hhCeTQvsswigp8H57v5nsoEoDeCZ/CuG30y', 1, 'admin@admin.com', '1980-01-01', '11922220012' ),
-('Prof.ª Beatriz Souza', 'beatriz.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'beatriz.souza@example.com', '1985-02-02', '11922220002'),
-('Prof. Marcos Lima', 'marcos.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'marcos.lima@example.com', '1990-03-03', '11922220003'),
-('Coord. Lúcia Martins', 'lucia.coord', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'lucia.martins@example.com', '1975-04-04', '11922220004'),
-('Coord. Pedro Gomes', 'pedro.coord', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'pedro.gomes@example.com', '1978-05-05', '11922220005'),
-('Analista Fábio Jr', 'fabio.qa', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 3, 'fabio.jr@example.com', '1992-06-06', '11922220006'),
-('Prof.ª/Adm. Sofia Reis', 'sofia.admin', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 4, 'sofia.reis@example.com', '1988-07-07', '11922220007'),
-('Prof. Ricardo Eletro', 'ricardo.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'ricardo.eletro@example.com', '1981-08-08', '11922220008'),
-('Prof.ª Mônica Geller', 'monica.prof', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'monica.geller@example.com', '1983-09-09', '11922220009'),
-('Diretor Silvio Santos', 'silvio.dir', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'silvio.santos@example.com', '1960-10-10', '11922220010'),
-('Prof. Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 5, 'abate.abel@cbf.com', '1990-05-01', '11922220015');
+('Beatriz Souza', 'beatriz.souza', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'beatriz.souza@example.com', '1985-02-02', '11922220002'),
+('Marcos Lima', 'marcos.lima', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 3, 'marcos.lima@example.com', '1990-03-03', '11922220003'),
+('Lúcia Martins', 'lucia.martins', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 4, 'lucia.martins@example.com', '1975-04-04', '11922220004'),
+('Pedro Gomes', 'pedro.gomes', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 5, 'pedro.gomes@example.com', '1978-05-05', '11922220005'),
+('Fábio Junior', 'fabio.junior', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 1, 'fabio.jr@example.com', '1992-06-06', '11922220006'),
+('Sofia Reis', 'sofia.reis', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 2, 'sofia.reis@example.com', '1988-07-07', '11922220007'),
+('Ricardo Eletro', 'ricardo.eletro', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 3, 'ricardo.eletro@example.com', '1981-08-08', '11922220008'),
+('Mônica Geller', 'monica.geller', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 4, 'monica.geller@example.com', '1983-09-09', '11922220009'),
+('Silvio Santos', 'silvio.santos', '$2a$10$uj5WMCHd0df.qOYMs4KRxO6X5NelqmapWJ0j5ET3bIO1j1E4fqqGS', 5, 'silvio.santos@example.com', '1960-10-10', '11922220010'),
+('Ramon Abate Abel', 'Abate.Abelzinho', '$2a$10$jzbIPp0IuaYnaMPZxqALeufmjSDOwCdrcf35i70nyeZMGQXt7UJV.', 2, 'abate.abel@cbf.com', '1990-05-01', '11922220015');
 
 
 
