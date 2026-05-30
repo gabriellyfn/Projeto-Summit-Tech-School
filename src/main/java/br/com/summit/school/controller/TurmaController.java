@@ -37,7 +37,7 @@ public class TurmaController {
         repository.save(turma);
 
         URI uri = uriBuilder.path("/turmas/{id}").buildAndExpand(turma.getIdTurma()).toUri();
-        return ResponseEntity.created(uri).body(new DadosListagemTurma(turma));
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping
