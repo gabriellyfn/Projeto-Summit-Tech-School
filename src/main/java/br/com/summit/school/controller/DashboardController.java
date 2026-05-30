@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 
 @RestController
+@PreAuthorize("hasAnyRole('ADMIN', 'COORDENADOR')")
 @RequestMapping("/dashboard")
 public class DashboardController {
 
@@ -22,8 +23,7 @@ public class DashboardController {
         this.repository = repository;
     }
 
-    @GetMapping("/estatisticas")
-    @PreAuthorize("hasAnyRole('ADMIN', 'COORDENADOR')")
+    @GetMapping()
     public ResponseEntity<DadosDashboard> obterEstatisticas(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
