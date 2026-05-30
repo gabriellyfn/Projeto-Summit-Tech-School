@@ -111,13 +111,13 @@ curl -X POST http://localhost:8080/login \
 
 ## 👤 Usuários
 
-Listar Usuários
+➜ Listar Usuários
 ```bash
 curl -X GET http://localhost:8080/usuarios \
 -H "Authorization: Bearer SEU_TOKEN"
 ```
 
-Cadastrar Usuários
+➜ Cadastrar Usuários
 ```bash
 curl -X POST http://localhost:8080/usuarios \
 -H "Content-Type: application/json" \
@@ -136,7 +136,7 @@ curl -X POST http://localhost:8080/usuarios \
 }'
 ```
 
-Atualizar Usuários
+➜ Atualizar Usuários
 ```bash
 curl -X PUT http://localhost:8080/usuarios/1 \
 -H "Content-Type: application/json" \
@@ -149,7 +149,7 @@ curl -X PUT http://localhost:8080/usuarios/1 \
 }'
 ```
 
-Deletar Usuários
+➜ Deletar Usuários
 ```bash
 curl -X DELETE http://localhost:8080/usuarios/1 \
 -H "Authorization: Bearer SEU_TOKEN"
@@ -157,14 +157,14 @@ curl -X DELETE http://localhost:8080/usuarios/1 \
 
 ## 🎓 Alunos
 
-Listar Alunos
+➜ Listar Alunos
 
 ```bash
 curl -X GET http://localhost:8080/alunos \
 -H "Authorization: Bearer SEU_TOKEN"
 ```
 
-Cadastrar Aluno
+➜ Cadastrar Aluno
 
 ```bash
 curl -X POST http://localhost:8080/alunos \
@@ -179,13 +179,9 @@ curl -X POST http://localhost:8080/alunos \
 }'
 ```
 
-Listar Turma
-```bash
-curl -X GET http://localhost:8080/turmas \
--H "Authorization: Bearer SEU_TOKEN"
-```
+## 👨‍🏫 Turmas
 
-Cadastrar Turma
+➜ Cadastrar Turma
 
 ```bash
 curl -X POST http://localhost:8080/turmas \
@@ -198,7 +194,18 @@ curl -X POST http://localhost:8080/turmas \
     }'
 ```
 
-Cadastrar Vinculo de Turma - Aluno
+➜ Listar Turma
+
+```bash
+curl -X GET http://localhost:8080/turmas \
+-H "Authorization: Bearer SEU_TOKEN"
+```Listar Turma
+```bash
+curl -X GET http://localhost:8080/turmas \
+-H "Authorization: Bearer SEU_TOKEN"
+```
+
+➜ Cadastrar Vinculo de Turma - Aluno
 
 ```bash
 curl -X POST http://localhost:8080/turmas/{id}/vincular-alunos \
@@ -207,6 +214,60 @@ curl -X POST http://localhost:8080/turmas/{id}/vincular-alunos \
 -d '{
       "alunosIds": [1, 2, 3]
     }'
+```
+
+## 📋 Ocorrências
+
+➜ Cadastrar Ocorrência
+
+```bash
+curl -X POST http://localhost:8080/ocorrencias \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer SEU_TOKEN" \
+-d '{
+  "idTurma": 1,
+  "idAluno": 1,
+  "idUsuario": 1,
+  "idTipoOcorrencia": 1,
+  "data": "2026-05-29",
+  "hora": "08:30:00",
+  "categoriaOcorrencia": "DISCIPLINAR",
+  "descricao": "Aluno apresentou comportamento inadequado durante a aula."
+}'
+```
+
+Perfis com acesso: Professor Administrativo e Admin.
+
+➜ Listar Ocorrências
+
+```bash
+curl -X GET http://localhost:8080/ocorrencias \
+-H "Authorization: Bearer SEU_TOKEN"
+```
+
+Perfis com acesso: Coordenador, Analista de Qualidade e Admin.
+
+➜ Detalhar Ocorrência
+
+```bash
+curl -X GET http://localhost:8080/ocorrencias/{id} \
+-H "Authorization: Bearer SEU_TOKEN"
+```
+
+Perfis com acesso: Coordenador, Analista de Qualidade e Admin.
+
+Exemplo de Payload:
+```bash
+{
+  "idTurma": 1,
+  "idAluno": 1,
+  "idUsuario": 1,
+  "idTipoOcorrencia": 1,
+  "data": "2026-05-29",
+  "hora": "08:30:00",
+  "categoriaOcorrencia": "DISCIPLINAR",
+  "descricao": "Aluno apresentou comportamento inadequado durante a aula."
+}
 ```
 
 # 🔑 Como obter o Token JWT
@@ -247,9 +308,4 @@ curl -X GET http://localhost:8080/usuarios \
 
 ## 👨‍💻 Equipe de Desenvolvimento
 
-Este projeto está sendo desenvolvido por:
-
-- Gabrielly Nascimento
-- Lyncoln Santiago
-- Michael Paulo
-- Weslley Rocha
+Este projeto foi desenvolvido por: Gabrielly Nascimento, Lyncoln Santiago, Michael Paulo e Weslley Rocha
