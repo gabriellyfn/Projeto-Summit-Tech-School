@@ -11,6 +11,9 @@ public record DadosCadastroTurma(
         Turno turno,
 
         @NotNull(message = "O semestre é obrigatório")
-        Semestre semestre
+        Semestre semestre,
+
+        @NotNull(message = "O ano é obrigatório")
+        String ano
 ) {
 }
