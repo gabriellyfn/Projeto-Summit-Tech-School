@@ -4,12 +4,14 @@ import br.com.summit.school.domain.ocorrencia.DadosCadastroOcorrencia;
 import br.com.summit.school.domain.ocorrencia.DadosDetalhamentoOcorrencia;
 import br.com.summit.school.domain.ocorrencia.DadosListagemOcorrencia;
 import br.com.summit.school.domain.ocorrencia.OcorrenciaService;
+import br.com.summit.school.domain.usuario.Usuario;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,10 +36,10 @@ public class OcorrenciaController {
     @PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
     public ResponseEntity<DadosDetalhamentoOcorrencia> cadastrar(
             @RequestBody @Valid DadosCadastroOcorrencia dados,
+            @AuthenticationPrincipal Usuario usuarioLogado,
             UriComponentsBuilder uriBuilder
             ){
-        DadosDetalhamentoOcorrencia ocorrencia =
-                service.cadastrar(dados);
+        DadosDetalhamentoOcorrencia ocorrencia = service.cadastrar(dados, usuarioLogado.getId_usuario());
 
         URI uri = uriBuilder
                 .path("/ocorrencias/{id}")
