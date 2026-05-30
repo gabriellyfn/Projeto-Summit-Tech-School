@@ -20,6 +20,12 @@ export class DashboardComponent implements OnInit {
   volumeAnual: DadosVolumeAnual[] = [];
   // valor máximo usado no cálculo do gráfico anual (contagem de ocorrências no ano com maior volume)
   volumeMax: number = 1;
+  // Ano selecionado para exibir o gráfico mensal (por padrão o último ano com dados)
+  selectedYear: string | null = null;
+  // Dados mensais para o gráfico de linha do ano selecionado
+  monthlyVolume: { mesIndex: number; mesLabel: string; total: number; percent: number }[] = [];
+  // string com pontos SVG para a polyline (calculada a partir de monthlyVolume)
+  monthlyPoints: string = '';
 
   private mesesAbreviados = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
@@ -116,6 +122,34 @@ export class DashboardComponent implements OnInit {
       const altura = (total / this.volumeMax) * 100;
       return { mes: ano, total: total, height: altura } as any;
     });
+
+    // Preparar dados mensais para o ano selecionado (último ano disponível)
+    this.selectedYear = anos.length ? anos[anos.length - 1] : new Date().getFullYear().toString();
+
+    // inicializar contagem por mês para o ano selecionado
+    const mesesCount = new Array(12).fill(0);
+    ocorrencias.forEach(oc => {
+      if (!oc.data) return;
+      const partes = oc.data.split('-');
+      const ano = partes[0];
+      const mesNum = partes.length >= 2 ? parseInt(partes[1], 10) - 1 : NaN;
+      if (ano === this.selectedYear && !isNaN(mesNum) && mesNum >= 0 && mesNum < 12) {
+        mesesCount[mesNum]++;
+      }
+    });
+
+    const maxMonthly = Math.max(...mesesCount) || 1;
+    this.monthlyVolume = mesesCount.map((total, idx) => ({ mesIndex: idx, mesLabel: this.mesesAbreviados[idx], total, percent: (total / maxMonthly) * 100 }));
+
+    // Calcular pontos para polyline SVG usando uma escala 0..100 (x em percent, y invertido)
+    const n = this.monthlyVolume.length;
+    const pointsArr: string[] = [];
+    for (let i = 0; i < n; i++) {
+      const x = n > 1 ? (i * (100 / (n - 1))) : 50;
+      const y = 100 - this.monthlyVolume[i].percent; // inverter para coordenadas SVG (0 topo)
+      pointsArr.push(`${x},${y}`);
+    }
+    this.monthlyPoints = pointsArr.join(' ');
 
     // Não criamos linhas de grade - o gráfico exibirá apenas anos (rótulos inferiores), totais (rótulos superiores) e barras.
   }

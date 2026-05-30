@@ -101,11 +101,29 @@
           <h5 class="card-title text-primary"><i class="bi bi-graph-up"></i> Volume Anual</h5>
         </div>
         <div class="card-body p-0"> <!-- Removi o padding padrão do card-body -->
-          <div class="chart-container">
-            <div class="chart-bar-wrapper" *ngFor="let item of volumeAnual">
-              <span class="chart-label-top" *ngIf="item.total !== undefined">{{ item.total }}</span>
-              <div class="chart-bar" [style.height.%]="item.height" [style.opacity]="item.total > 0 ? '1' : '0.2'"></div>
-              <span class="chart-label-bottom">{{ item.mes }}</span>
+          <div class="chart-line-container p-3">
+            <div class="line-header d-flex justify-content-between align-items-center mb-2">
+              <div class="fw-bold">Volume por Mês</div>
+              <div class="text-muted small">Ano: {{ selectedYear }}</div>
+            </div>
+
+            <div class="line-chart-wrapper">
+              <svg class="line-chart-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <!-- área preenchida opcional -->
+                <polyline [attr.points]="monthlyPoints" fill="none" stroke="#0d6efd" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" />
+                <!-- pontos -->
+                <g *ngFor="let p of monthlyVolume; let i = index">
+                  <circle [attr.cx]="(i * (100/(monthlyVolume.length - 1)))" [attr.cy]="100 - p.percent" r="1.2" fill="#0d6efd"></circle>
+                </g>
+              </svg>
+
+              <!-- rótulos inferiores (meses) e rótulos superiores (totais) -->
+              <div class="line-labels d-flex justify-content-between">
+                <div *ngFor="let p of monthlyVolume" class="text-center" style="flex:1 1 0;">
+                  <div class="small text-muted">{{ p.mesLabel }}</div>
+                  <div class="fw-bold">{{ p.total }}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
