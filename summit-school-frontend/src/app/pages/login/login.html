@@ -1,0 +1,63 @@
+<div class="login-container d-flex justify-content-center align-items-center">
+  <div class="login-card card p-4 shadow-sm">
+    <div class="card-body">
+
+      <!-- Logo e Título -->
+      <div class="text-center mb-4">
+        <img src="assets/logo_branco2.png" alt="Summit Tech School Logo" class="login-logo mb-2">
+        <h3 class="card-title">Bem-vindo(a)</h3>
+        <p class="card-subtitle text-muted">Acesse o painel de ocorrências</p>
+      </div>
+
+      <!-- Alerta de Erro Geral -->
+      <div *ngIf="showFormError" class="alert alert-danger" role="alert">
+        Por favor, preencha todos os campos obrigatórios.
+      </div>
+
+      <!-- Formulário Angular -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <!-- Campo de Login -->
+        <div class="mb-3">
+          <label for="login" class="form-label">Usuário</label>
+          <input
+            type="text"
+            class="form-control"
+            id="login"
+            formControlName="login"
+            placeholder="Digite seu usuário"
+            [ngClass]="{ 'is-invalid': loginForm.get('login')?.invalid && (loginForm.get('login')?.dirty || loginForm.get('login')?.touched) }"
+          >
+          <!-- Mensagem de erro de Login Obrigatório -->
+          <div *ngIf="loginForm.get('login')?.invalid && (loginForm.get('login')?.dirty || loginForm.get('login')?.touched)" class="invalid-feedback">
+            O usuário é obrigatório.
+          </div>
+        </div>
+
+        <!-- Campo de Senha -->
+        <div class="mb-3">
+          <label for="senha" class="form-label">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            id="senha"
+            formControlName="senha"
+            placeholder="Digite sua senha"
+            [ngClass]="{ 'is-invalid': loginForm.get('senha')?.invalid && (loginForm.get('senha')?.dirty || loginForm.get('senha')?.touched) }"
+          >
+          <!-- Mensagem de erro de Senha Obrigatória -->
+          <div *ngIf="loginForm.get('senha')?.invalid && (loginForm.get('senha')?.dirty || loginForm.get('senha')?.touched)" class="invalid-feedback">
+            A senha é obrigatória.
+          </div>
+        </div>
+
+        <!-- Botão de Entrar -->
+        <div class="d-grid">
+          <!-- Botão sempre habilitado para permitir o submit e mostrar o erro geral -->
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
