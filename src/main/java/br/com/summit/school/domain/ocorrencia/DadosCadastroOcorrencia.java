@@ -14,9 +14,6 @@ public record DadosCadastroOcorrencia(
         @NotNull(message = "O ID do aluno é obrigatório")
         Long idAluno,
 
-        @NotNull(message = "O ID do usuário é obrigatório")
-        Long idUsuario,
-
         @NotNull(message = "O ID do tipo de ocorrência é obrigatório")
         Long idTipoOcorrencia,
 

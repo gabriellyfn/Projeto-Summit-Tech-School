@@ -37,7 +37,7 @@ public class OcorrenciaService {
     }
 
     @Transactional
-    public DadosDetalhamentoOcorrencia cadastrar(DadosCadastroOcorrencia dados) {
+    public DadosDetalhamentoOcorrencia cadastrar(DadosCadastroOcorrencia dados, Long idUsuarioLogado) {
 
         var aluno = alunoRepository.findById(dados.idAluno())
                 .orElseThrow(() -> new EntityNotFoundException("Aluno não encontrado com o ID: " + dados.idAluno()));
@@ -45,8 +45,8 @@ public class OcorrenciaService {
         var turma = turmaRepository.findById(dados.idTurma())
                 .orElseThrow(() -> new EntityNotFoundException("Turma não encontrada com o ID: " + dados.idTurma()));
 
-        var usuario = usuarioRepository.findById(dados.idUsuario())
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado com o ID: " + dados.idUsuario()));
+        var usuario = usuarioRepository.findById(idUsuarioLogado)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado com o ID: " + idUsuarioLogado));
 
         var tipoOcorrencia = tipoOcorrenciaRepository.findById(dados.idTipoOcorrencia())
                 .orElseThrow(() -> new EntityNotFoundException("Tipo de Ocorrência não encontrado com o ID: " + dados.idTipoOcorrencia()));
