@@ -190,7 +190,8 @@ curl -X POST http://localhost:8080/turmas \
 -d '{
         "nome": "3D - Ensino Médio",
         "turno": "MANHA",
-        "semestre": "PRIMEIRO_SEMESTRE"
+        "semestre": "PRIMEIRO_SEMESTRE",
+        "ano": "2026"
     }'
 ```
 
