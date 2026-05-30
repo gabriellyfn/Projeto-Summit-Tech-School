@@ -1,23 +1,13 @@
 package br.com.summit.school.controller;
 
-import br.com.summit.school.domain.ocorrencia.DadosCadastroOcorrencia;
-import br.com.summit.school.domain.ocorrencia.DadosDetalhamentoOcorrencia;
-import br.com.summit.school.domain.ocorrencia.DadosListagemOcorrencia;
-import br.com.summit.school.domain.ocorrencia.OcorrenciaService;
-import br.com.summit.school.domain.usuario.Usuario;
+import br.com.summit.school.domain.ocorrencia.*;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -33,24 +23,25 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('PROFESSOR_ADMINISTRATIVO', 'ADMIN', 'PROFESSOR')")
     public ResponseEntity<DadosDetalhamentoOcorrencia> cadastrar(
             @RequestBody @Valid DadosCadastroOcorrencia dados,
-            @AuthenticationPrincipal Usuario usuarioLogado,
             UriComponentsBuilder uriBuilder
             ){
-        DadosDetalhamentoOcorrencia ocorrencia = service.cadastrar(dados, usuarioLogado.getId_usuario());
+        DadosDetalhamentoOcorrencia ocorrencia = service.cadastrar(dados);
 
         URI uri = uriBuilder
                 .path("/ocorrencias/{id}")
                 .buildAndExpand(ocorrencia.id())
                 .toUri();
 
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity
+                .created(uri)
+                .body(ocorrencia);
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('PROFESSOR', 'COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
     public ResponseEntity<Page<DadosListagemOcorrencia>> listar(
             @PageableDefault(size = 10) Pageable paginacao
     ){
@@ -61,7 +52,7 @@ public class OcorrenciaController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('PROFESSOR', 'COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
     public ResponseEntity<DadosDetalhamentoOcorrencia> detalhar(
             @PathVariable Long id
     ){
@@ -69,5 +60,28 @@ public class OcorrenciaController {
         var ocorrencia = service.detalhar(id);
 
         return ResponseEntity.ok(ocorrencia);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('PROFESSOR', 'ADMIN')")
+    public ResponseEntity<DadosDetalhamentoOcorrencia> atualizar(
+            @PathVariable Long id,
+            @RequestBody @Valid DadosAtualizacaoOcorrencia dados
+    ) {
+
+        var ocorrencia = service.atualizar(id, dados);
+
+        return ResponseEntity.ok(ocorrencia);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('PROFESSOR', 'ADMIN')")
+    public ResponseEntity<Void> excluir(
+            @PathVariable Long id
+    ) {
+
+        service.excluir(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
