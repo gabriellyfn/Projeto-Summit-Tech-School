@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,14 +10,20 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   private apiUrl = 'http://localhost:8080';
+  private isBrowser: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // Verifica se o código está rodando no navegador
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   login(credentials: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       map(response => {
-        // CORREÇÃO: Lê a propriedade "tokenJWT" do JSON de resposta, e não "token"
-        if (response && response.tokenJWT) {
+        if (this.isBrowser && response && response.tokenJWT) {
           localStorage.setItem('authToken', response.tokenJWT);
         }
         return response;
@@ -25,7 +32,10 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    if (this.isBrowser) {
+      return localStorage.getItem('authToken');
+    }
+    return null;
   }
 
   isLoggedIn(): boolean {
@@ -33,6 +43,8 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
+    if (this.isBrowser) {
+      localStorage.removeItem('authToken');
+    }
   }
 }

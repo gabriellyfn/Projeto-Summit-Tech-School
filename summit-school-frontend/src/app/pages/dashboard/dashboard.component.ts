@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { DashboardService } from '../../services/dashboard.service';
-import { DadosDashboard, DadosRankingAluno } from '../../models/dashboard.model';
+import { OcorrenciaService, PagedOcorrencias } from '../../services/ocorrencia.service';
+import { DadosRankingAluno } from '../../models/dashboard.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,39 +14,57 @@ import { DadosDashboard, DadosRankingAluno } from '../../models/dashboard.model'
 })
 export class DashboardComponent implements OnInit {
 
-  // Variáveis para guardar os dados que virão da API
   totalOcorrenciasMes: number = 0;
   topAlunos: DadosRankingAluno[] = [];
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private dashboardService: DashboardService
+    private ocorrenciaService: OcorrenciaService
   ) {}
 
   ngOnInit(): void {
-    // Definimos as datas de início e fim. Por enquanto, fixas para pegar todo o ano atual
-    const hoje = new Date();
-    const inicio = `${hoje.getFullYear()}-01-01`;
-    const fim = `${hoje.getFullYear()}-12-31`;
-
-    this.carregarEstatisticas(inicio, fim);
+    this.carregarOcorrencias();
   }
 
-  carregarEstatisticas(inicio: string, fim: string) {
-    this.dashboardService.getEstatisticas(inicio, fim).subscribe({
-      next: (dados: DadosDashboard) => {
-        console.log('Dados recebidos do dashboard:', dados);
-        // Atualiza a lista de alunos com os dados da API (pegando apenas os 5 primeiros)
-        this.topAlunos = dados.rankingReincidentes.slice(0, 5);
-
-        // Calcula o total somando as quantidades por categoria (ou usando um valor específico se a API retornar diferente)
-        this.totalOcorrenciasMes = dados.totalPorCategoria.reduce((acc, curr) => acc + curr.total, 0);
+  carregarOcorrencias() {
+    this.ocorrenciaService.getOcorrencias().subscribe({
+      next: (response: PagedOcorrencias) => {
+        const ocorrencias = response.content;
+        console.log('Ocorrências recebidas:', ocorrencias);
+        this.processarOcorrencias(ocorrencias);
       },
       error: (err) => {
-        console.error('Erro ao buscar estatísticas do dashboard:', err);
+        console.error('Erro ao buscar ocorrências:', err);
       }
     });
+  }
+
+  processarOcorrencias(ocorrencias: any[]) {
+    this.totalOcorrenciasMes = ocorrencias.length;
+
+    // Usando string (nome do aluno) como chave para o agrupamento
+    const contagemAlunos: { [nome: string]: { id: number, nome: string, quantidade: number } } = {};
+
+    // Vamos usar um id simulado para a tela, já que a API não retorna o ID do aluno
+    let idSimulado = 1;
+
+    ocorrencias.forEach(oc => {
+      const nomeAluno = oc.aluno;
+
+      if (nomeAluno) {
+        if (!contagemAlunos[nomeAluno]) {
+          contagemAlunos[nomeAluno] = { id: idSimulado++, nome: nomeAluno, quantidade: 0 };
+        }
+        contagemAlunos[nomeAluno].quantidade++;
+      }
+    });
+
+    const listaRanking = Object.values(contagemAlunos);
+    listaRanking.sort((a, b) => b.quantidade - a.quantidade);
+    this.topAlunos = listaRanking.slice(0, 5);
+
+    console.log('Top 5 Alunos Calculado:', this.topAlunos);
   }
 
   logout() {
