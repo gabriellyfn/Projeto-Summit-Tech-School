@@ -44,9 +44,7 @@ public class OcorrenciaController {
                 .buildAndExpand(ocorrencia.id())
                 .toUri();
 
-        return ResponseEntity
-                .created(uri)
-                .body(ocorrencia);
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping
