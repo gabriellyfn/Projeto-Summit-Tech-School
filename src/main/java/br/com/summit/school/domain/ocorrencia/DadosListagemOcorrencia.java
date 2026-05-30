@@ -14,7 +14,9 @@ public record DadosListagemOcorrencia(
         Tipo_Ocorrencia categoriaOcorrencia,
 
         LocalDate data,
-        LocalTime hora
+        LocalTime hora,
+
+        String descricao
 ) {
     public DadosListagemOcorrencia (Ocorrencia ocorrencia){
         this(
@@ -24,7 +26,8 @@ public record DadosListagemOcorrencia(
                 ocorrencia.getTipo_ocorrencia().getNome_Ocorrencia().toString(),
                 ocorrencia.getCategoria_ocorrencia(),
                 ocorrencia.getData(),
-                ocorrencia.getHora()
+                ocorrencia.getHora(),
+                ocorrencia.getDescricao()
         );
     }
 }
