@@ -72,18 +72,24 @@
   <!-- Segunda Linha: Gráficos -->
   <div class="row">
 
-    <!-- Gráfico de Categoria (Espaço reservado) -->
+    <!-- Ocorrências por Categoria -->
     <div class="col-md-6 mb-4">
       <div class="card shadow-sm h-100">
         <div class="card-header bg-white border-bottom-0 pt-3 pb-0">
           <h5 class="card-title text-primary"><i class="bi bi-pie-chart"></i> Ocorrências por Categoria</h5>
         </div>
-        <div class="card-body d-flex justify-content-center align-items-center bg-light m-3 rounded" style="min-height: 300px;">
-          <!-- Aqui entraremos com a biblioteca de gráficos depois (ex: Chart.js) -->
-          <div class="text-center text-muted">
-            <i class="bi bi-bar-chart fs-1"></i>
-            <p>Área reservada para o Gráfico de Pizza</p>
-          </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let cat of totaisPorCategoria">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span>{{ cat.categoria }}</span>
+                <span class="badge bg-primary rounded-pill">{{ cat.total }}</span>
+              </div>
+              <div class="progress" style="height: 5px;">
+                <div class="progress-bar" role="progressbar" [style.width]="(cat.total / totalOcorrenciasMes * 100) + '%'"></div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
