@@ -13,3 +13,9 @@ export interface DadosDashboard {
   rankingReincidentes: DadosRankingAluno[];
   totalPorCategoria: DadosTotalCategoria[];
 }
+
+export interface DadosVolumeAnual {
+  mes: string;
+  total: number;
+  height: number; // Nova propriedade para armazenar a altura calculada
+}
