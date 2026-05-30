@@ -33,10 +33,15 @@ export class LoginComponent {
 
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          // this.router.navigate(['/dashboard']);
+          console.log('Evento NEXT do subscribe foi chamado!', response); // LOG DE DIAGNÓSTICO
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
+          console.error('Evento ERROR do subscribe foi chamado!', err); // LOG DE DIAGNÓSTICO
           alert('Falha no login. Verifique suas credenciais.');
+        },
+        complete: () => {
+          console.log('Evento COMPLETE do subscribe foi chamado!'); // LOG DE DIAGNÓSTICO
         }
       });
     } else {

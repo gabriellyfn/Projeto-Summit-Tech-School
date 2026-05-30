@@ -1,40 +1,50 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080'; // URL base da nossa API
+  private apiUrl = 'http://localhost:8080';
+  private isBrowser: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // Verifica se o código está rodando no navegador
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   login(credentials: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
-      tap(response => {
-        // Se a resposta tiver um token, armazena no localStorage
-        if (response && response.token) {
-          localStorage.setItem('authToken', response.token);
+      map(response => {
+        if (this.isBrowser && response && response.tokenJWT) {
+          localStorage.setItem('authToken', response.tokenJWT);
         }
+        return response;
       })
     );
   }
 
-  // Método para pegar o token armazenado
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    if (this.isBrowser) {
+      return localStorage.getItem('authToken');
+    }
+    return null;
   }
 
-  // Método para verificar se o usuário está logado
   isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
 
-  // Método para fazer logout
   logout(): void {
-    localStorage.removeItem('authToken');
+    if (this.isBrowser) {
+      localStorage.removeItem('authToken');
+    }
   }
 }

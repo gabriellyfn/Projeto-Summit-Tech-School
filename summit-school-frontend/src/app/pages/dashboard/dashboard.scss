@@ -1,0 +1,70 @@
+.chart-container {
+  display: flex;
+  /* usar gap em vez de espaçamento rígido entre itens para melhor responsividade */
+  gap: 10px;
+  align-items: flex-end;
+  height: 250px; /* Altura fixa para a área do gráfico */
+  padding: 20px 10px 10px 10px;
+  border-top: 1px solid #eee;
+  /* permitir rolagem horizontal em telas pequenas sem quebrar o card */
+  overflow-x: auto;
+}
+
+
+.chart-bar-wrapper {
+  /* tornar cada item flexível para ajustar-se ao espaço disponível */
+  flex: 1 1 0;
+  min-width: 36px; /* garante legibilidade em telas pequenas */
+  max-width: 72px; /* evita barras muito largas em telas grandes */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.chart-bar {
+  /* largura relativa ao wrapper (para ser responsiva) */
+  width: 60%;
+  max-width: 48px;
+  background-color: #0d6efd; /* Cor primária do Bootstrap */
+  border-radius: 5px 5px 0 0;
+  transition: height 0.3s ease-in-out;
+}
+
+/* Styles for line chart */
+.chart-line-container {
+  width: 100%;
+}
+
+.line-chart-wrapper {
+  position: relative;
+  height: 180px;
+}
+
+.line-chart-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.line-labels {
+  margin-top: 8px;
+}
+
+.line-labels .fw-bold {
+  margin-top: 4px;
+}
+
+.chart-label-top {
+  font-size: 0.8rem;
+  color: #6c757d; /* Cor 'secondary' do Bootstrap */
+  margin-bottom: 4px;
+}
+
+.chart-label-bottom {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-top: 8px;
+}
