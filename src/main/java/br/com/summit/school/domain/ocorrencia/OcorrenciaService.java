@@ -3,6 +3,7 @@ package br.com.summit.school.domain.ocorrencia;
 import br.com.summit.school.model.Tipo_Ocorrencia;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.summit.school.domain.aluno.AlunoRepository;
@@ -11,6 +12,8 @@ import br.com.summit.school.domain.turma.TurmaRepository;
 import br.com.summit.school.domain.usuario.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+
+import java.time.LocalDate;
 
 @Service
 public class OcorrenciaService {
@@ -71,8 +74,9 @@ public class OcorrenciaService {
         return new DadosDetalhamentoOcorrencia(ocorrencia);
     }
 
-    public Page<DadosListagemOcorrencia> listar(Pageable paginacao) {
-        return ocorrenciaRepository.findAll(paginacao).map(DadosListagemOcorrencia::new);
+    public Page<DadosListagemOcorrencia> listar(Long idAluno, Long idTurma, LocalDate dataInicio, LocalDate dataFim, Long idCategoria, Pageable paginacao) {
+        Specification<Ocorrencia> spec = OcorrenciaSpecification.comFiltros(idAluno, idTurma, dataInicio, dataFim, idCategoria);
+        return ocorrenciaRepository.findAll(spec, paginacao).map(DadosListagemOcorrencia::new);
     }
 
     public DadosDetalhamentoOcorrencia detalhar(Long id) {
@@ -80,6 +84,14 @@ public class OcorrenciaService {
                 .orElseThrow(() -> new EntityNotFoundException("Ocorrência não encontrada com o ID: " + id));
         
         return new DadosDetalhamentoOcorrencia(ocorrencia);
+    }
+
+    public Page<DadosListagemOcorrencia> listarHistoricoPorAluno (Long idAluno, Pageable paginacao) {
+        if (!alunoRepository.existsById(idAluno)) {
+            throw new jakarta.persistence.EntityNotFoundException("Aluno não encontrado com o ID: " + idAluno);
+        }
+
+        return ocorrenciaRepository.findByAlunoId(idAluno, paginacao).map(DadosListagemOcorrencia::new);
     }
 
 }
