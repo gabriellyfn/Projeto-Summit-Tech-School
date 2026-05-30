@@ -94,4 +94,11 @@ public class OcorrenciaService {
         return ocorrenciaRepository.findByAlunoId(idAluno, paginacao).map(DadosListagemOcorrencia::new);
     }
 
+    public Page<DadosListagemOcorrencia> listarPorTipo(Long idTipo, Pageable paginacao) {
+        if (!tipoOcorrenciaRepository.existsById(idTipo)) {
+            throw new EntityNotFoundException("Tipo de ocorrencia não encontrado com o ID: " + idTipo);
+        }
+
+        return ocorrenciaRepository.findByTipoOcorrencia(idTipo, paginacao).map(DadosListagemOcorrencia::new);
+    }
 }

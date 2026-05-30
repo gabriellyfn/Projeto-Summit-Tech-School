@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -27,6 +28,9 @@ public interface OcorrenciaRepository extends JpaRepository<Ocorrencia, Long>, J
             "WHERE o.data BETWEEN :inicio AND :fim " +
             "GROUP BY o.categoria_ocorrencia")
     List<DadosTotalCategoria> findTotalPorCategoriaNoPeriodo(LocalDate inicio, LocalDate fim);
+
+    @Query("SELECT o FROM Ocorrencia o WHERE o.tipo_ocorrencia.id_tipo_ocorrencia = :idTipo")
+    Page<Ocorrencia> findByTipoOcorrencia(Long idTipo, Pageable paginacao);
 
     Page<Ocorrencia> findByAlunoId(Long idAluno, Pageable paginacao);
 }

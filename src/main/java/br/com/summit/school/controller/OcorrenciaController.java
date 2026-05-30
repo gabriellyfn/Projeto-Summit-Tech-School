@@ -80,4 +80,14 @@ public class OcorrenciaController {
                 var page = service.listarHistoricoPorAluno(idAluno, paginacao);
                 return ResponseEntity.ok(page);
     }
+
+    @GetMapping("/tipo/{idTipo}")
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'ANALISTA_DE_QUALIDADE', 'ADMIN')")
+    public ResponseEntity<Page<DadosListagemOcorrencia>> listarPorTipo(
+            @PathVariable Long idTipo,
+            @PageableDefault(size = 10, sort = {"data"}, direction = org.springframework.data.domain.Sort.Direction.DESC) Pageable paginacao) {
+
+                var page = service.listarPorTipo(idTipo, paginacao);
+                return ResponseEntity.ok(page);
+    }
 }
